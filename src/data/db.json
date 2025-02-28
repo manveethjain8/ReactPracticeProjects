@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "fName": "M",
+      "lName": "J",
+      "pNumber": "1234567891",
+      "email": "man@gmail.com",
+      "password": "123"
+    }
+  ]
+}

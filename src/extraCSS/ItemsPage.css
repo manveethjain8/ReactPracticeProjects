@@ -1,0 +1,30 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.itemsPageContainer {
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 99;
+}
+
+.header {
+    background-color: transparent;
+    height: 60px;
+    width: 100dvw;
+    min-width:400px;
+    border: none;
+    z-index: 100;
+    color: white;
+    font-size: 100px;
+}
+
+.itemsPageBackground{
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+}

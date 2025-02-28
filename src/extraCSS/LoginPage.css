@@ -1,0 +1,172 @@
+html, body, #root {
+    min-width: 320px;  /* Prevents collapsing below mobile width */
+    min-height: 500px; /* Optional: Ensures a minimum height */
+    overflow-x: auto;  /* Prevents horizontal scrolling issues */
+  }
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loginPageBox{
+    width: 90%;
+    height: 90%;
+    max-width: 750px;
+    min-width: 800px;
+    max-height: 500px;
+    min-height: 400px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    column-gap: 10px;
+    background-color:  rgb(107, 72, 36);
+
+}
+
+.loginPageBox .imageBox{
+    width:350px;
+    height: 480px;
+    border-radius: 10px;
+    min-height: auto;
+}
+
+.loginPageBox .imageBox .image{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    min-height: auto;
+}
+
+.loginPageBox .inputBox {
+    width:400px;
+    height: 480px;
+    font-family: open-sans, sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginPageBox .inputBox .welcomeBackText{
+    margin-top: 20px;
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.loginPageBox .inputBox .enterTheDetailsText{
+    font-size: 12px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.loginPageBox .inputBox .emailText{
+    margin-top: 50px;
+    width: fit-content;
+    margin-left: 40px;
+    font-size: 17px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.loginPageBox .inputBox .emailInput, .passwordInput{
+    width: 325px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: black;
+    margin-bottom: 10px;
+    cursor: text;
+    background-color: beige;
+    text-indent: 15px;
+}
+
+.loginPageBox .inputBox .passwordText{
+    margin-top: 10px;
+    width: fit-content;
+    margin-left: 40px;
+    font-size: 17px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.loginPageBox .inputBox .loginButton{
+    width: 328px;
+    height: 40px;
+    background-color:green;
+    border-radius: 5px;
+    border: none;
+    color: beige;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.2s ease;
+}
+
+.loginPageBox .inputBox .forgotPasswordText{
+    color: beige;
+    margin-top: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    width: fit-content;
+    margin-left: 260px;
+    transition: color 0.2s ease;
+}
+
+.loginPageBox .inputBox .loginButton:hover{
+    background-color: #009432;
+}
+
+.loginPageBox .inputBox .forgotPasswordText:hover{
+    color: lightcoral;
+}
+
+.loginPageBox .inputBox .loginButton:active{
+    background-color: #007824;  
+}
+
+.loginPageBox .inputBox .invalidEmail{
+    width: 300px;
+    height: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 3px solid red;
+    font-size: 14px;
+    color: red;
+    margin-bottom: 10px;
+    cursor: text;
+}
+
+.loginPageBox .inputBox .invalidPassword{
+    width: 300px;
+    height: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 3px solid red;
+    font-size: 14px;
+    color: red;
+    margin-bottom: 10px;
+    cursor: text;
+}
+
+.loginPageBox .inputBox .registerText{
+    width: fit-content;
+    margin-top: 20px;
+    margin-left: 120px;
+    font-size: 15px;
+    color: beige;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.loginPageBox .inputBox .registerText:hover{
+    color: lightcoral;
+}
+
