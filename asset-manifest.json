@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/manveethjain8/ReactPracticeProjects/static/css/main.cde9bf79.css",
-    "main.js": "/manveethjain8/ReactPracticeProjects/static/js/main.d9ad08ec.js",
-    "static/media/loginPageImage.webp": "/manveethjain8/ReactPracticeProjects/static/media/loginPageImage.be55e641ff52cc88ba61.webp",
-    "static/media/itemsPageImage.webp": "/manveethjain8/ReactPracticeProjects/static/media/itemsPageImage.ab60eeac0d6eed87cd13.webp",
-    "index.html": "/manveethjain8/ReactPracticeProjects/index.html",
-    "main.cde9bf79.css.map": "/manveethjain8/ReactPracticeProjects/static/css/main.cde9bf79.css.map",
-    "main.d9ad08ec.js.map": "/manveethjain8/ReactPracticeProjects/static/js/main.d9ad08ec.js.map"
+    "main.css": "/ReactPracticeProjects/Login-page-1/static/css/main.d2da5d5a.css",
+    "main.js": "/ReactPracticeProjects/Login-page-1/static/js/main.423a4295.js",
+    "static/media/loginPageImage.webp": "/ReactPracticeProjects/Login-page-1/static/media/loginPageImage.ca2dbde7000210b16627.webp",
+    "static/media/signupPageBackground.webp": "/ReactPracticeProjects/Login-page-1/static/media/signupPageBackground.28193c2e48b4838e68de.webp",
+    "static/media/loginPageBackground.webp": "/ReactPracticeProjects/Login-page-1/static/media/loginPageBackground.aa1b388f79ef5f3c3627.webp",
+    "static/media/cartPageBackground.webp": "/ReactPracticeProjects/Login-page-1/static/media/cartPageBackground.c9eb56db876d76d6f759.webp",
+    "static/media/itemsPageImage.webp": "/ReactPracticeProjects/Login-page-1/static/media/itemsPageImage.de2d2fe0edf16803a986.webp",
+    "index.html": "/ReactPracticeProjects/Login-page-1/index.html",
+    "main.d2da5d5a.css.map": "/ReactPracticeProjects/Login-page-1/static/css/main.d2da5d5a.css.map",
+    "main.423a4295.js.map": "/ReactPracticeProjects/Login-page-1/static/js/main.423a4295.js.map"
   },
   "entrypoints": [
-    "static/css/main.cde9bf79.css",
-    "static/js/main.d9ad08ec.js"
+    "static/css/main.d2da5d5a.css",
+    "static/js/main.423a4295.js"
   ]
 }
