@@ -1,6 +1,7 @@
 import React from 'react'
 import '../extraCSS/SignupPage.css'
 import loginPageImage from '../images/loginPageImage.webp'
+import signupPageBackground from '../images/signupPageBackground.webp'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -39,7 +40,7 @@ const SignupPage = ({email, setEmail, password, setPassword,users,setUsers,setFe
           setLName('');
           setPNumber('');
           alert('Registration Successful');
-          navigate('/');
+          navigate('/login');
       }
     }
     
@@ -47,6 +48,10 @@ const SignupPage = ({email, setEmail, password, setPassword,users,setUsers,setFe
     
   return (
     <div className='container'>
+          <div className='underlayl'></div>
+          <div className='backgroundImage'>
+            <img className='background' src={signupPageBackground} alt="No image"/>
+          </div>
           <div className="loginPageBox">
             <div className='imageBox'>
               <img className='image' src={loginPageImage} alt="No image"/>

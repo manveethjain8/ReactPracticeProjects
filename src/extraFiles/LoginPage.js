@@ -1,11 +1,12 @@
 import React from 'react'
 import '../extraCSS/LoginPage.css'
 import loginPageImage from '../images/loginPageImage.webp'
+import loginPageBackground from '../images/loginPageBackground.webp'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const LoginPage = ({users,email, setEmail, password, setPassword}) => {
+const LoginPage = ({users,email, setEmail, password, setPassword, setLoggedInUser}) => {
   const navigate = useNavigate();
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
@@ -20,7 +21,8 @@ const LoginPage = ({users,email, setEmail, password, setPassword}) => {
         setPassword('');
         setIsValidEmail(true);
         setIsValidPassword(true);
-        navigate('/items');
+        setLoggedInUser(userFound);
+        navigate('/');
       } else {
         setIsValidPassword(false);
       }
@@ -30,6 +32,10 @@ const LoginPage = ({users,email, setEmail, password, setPassword}) => {
   };
   return (
     <div className='container'>
+          <div className='underlayl'></div>
+          <div className='backgroundImage'>
+            <img className='background' src={loginPageBackground} alt="No background"/>
+          </div>
           <div className="loginPageBox">
             <div className='imageBox'>
               <img className='image' src={loginPageImage} alt="No image"/>
