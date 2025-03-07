@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ReactPracticeProjects/static/css/main.d2da5d5a.css",
-    "main.js": "/ReactPracticeProjects/static/js/main.02044035.js",
+    "main.js": "/ReactPracticeProjects/static/js/main.eb45fe05.js",
     "static/media/loginPageImage.webp": "/ReactPracticeProjects/static/media/loginPageImage.ca2dbde7000210b16627.webp",
     "static/media/signupPageBackground.webp": "/ReactPracticeProjects/static/media/signupPageBackground.28193c2e48b4838e68de.webp",
     "static/media/loginPageBackground.webp": "/ReactPracticeProjects/static/media/loginPageBackground.aa1b388f79ef5f3c3627.webp",
@@ -9,10 +9,10 @@
     "static/media/itemsPageImage.webp": "/ReactPracticeProjects/static/media/itemsPageImage.de2d2fe0edf16803a986.webp",
     "index.html": "/ReactPracticeProjects/index.html",
     "main.d2da5d5a.css.map": "/ReactPracticeProjects/static/css/main.d2da5d5a.css.map",
-    "main.02044035.js.map": "/ReactPracticeProjects/static/js/main.02044035.js.map"
+    "main.eb45fe05.js.map": "/ReactPracticeProjects/static/js/main.eb45fe05.js.map"
   },
   "entrypoints": [
     "static/css/main.d2da5d5a.css",
-    "static/js/main.02044035.js"
+    "static/js/main.eb45fe05.js"
   ]
 }
