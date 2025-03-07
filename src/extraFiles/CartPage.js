@@ -3,7 +3,7 @@ import '../extraCSS/CartPage.css';
 import cartPageBackground from '../images/cartPageBackground.webp'
 import apiRequest from '../apiRequest';
 
-const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, fetchError, setFetchError, API_cartURL,loggedInUser }) => {
+const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, setFetchError, API_cartURL,loggedInUser, API_ordersURL, orders, setOrders }) => {
   const [searchItem, setSearchItem] = useState('');
   const [filteredItems, setFilteredItems] = useState(cart);
 
@@ -79,6 +79,47 @@ const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, fe
   let S = TBT < 5 ? 3 : 0;
   let TAT = TBT + S + 5; 
 
+  const placeOrder = async (userCartItems) => {
+    try {
+      // Generate orderId
+      const orderId = orders.length > 0 ? Number(orders[orders.length - 1].orderId) + 1 : 1;
+      
+      // Create order data
+      const orderData = { orderId,user_name:loggedInUser.lName, user_pNumber:loggedInUser.pNumber, user_email:loggedInUser.email, userId: loggedInUser.id, items: userCartItems, cost:TAT };
+      const orderOption = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData),
+      };
+  
+      // Save order
+      setOrders([...orders, orderData]);
+      const result = await apiRequest(API_ordersURL, orderOption);
+      if (result) {
+        setFetchError(result);
+        return; // Stop execution if there's an error
+      }
+  
+      
+      // ✅ Delete each item in the cart for the user
+      for (const item of userCartItems) {
+        await apiRequest(`${API_cartURL}/${item.id}`, { method: "DELETE" });
+      }
+
+      // Clear cart in state
+      setCart([]);
+      setTotalNumberOfItems(0);
+  
+      alert('Order placed successfully');
+      setFetchError(null);
+  
+    } catch (error) {
+      console.error("Error placing order:", error);
+      setFetchError("Failed to place order.");
+    }
+  };
+  
+
   return (
     <div className='cartItemsPageContainer'>
       <img className='itemsPageBackground' src={cartPageBackground} alt="Background" />
@@ -139,7 +180,7 @@ const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, fe
               <p>Total After Tax:</p>
               <p>$ {TAT.toFixed(2)}</p>
             </div>
-            <button className='checkoutButton'>Checkout</button>
+            <button className='checkoutButton' onClick={()=>{placeOrder(userCartItems)}}>Checkout</button>
           </div>
           ) : (
             <p>Add Items to see cart total</p>

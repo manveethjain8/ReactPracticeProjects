@@ -1,9 +1,9 @@
 {
   "users": [
     {
-      "id": "1",
-      "fName": "M",
-      "lName": "J",
+      "id": 1,
+      "fName": "Manveeth",
+      "lName": "Jain",
       "pNumber": "1234567891",
       "email": "man@gmail.com",
       "password": "123"
@@ -125,5 +125,7 @@
     }
   ],
   "cart": [
+  ],
+  "orders": [
   ]
 }

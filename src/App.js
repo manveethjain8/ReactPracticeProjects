@@ -10,8 +10,10 @@ function App() {
   const API_URL='http://localhost:3500/users';
   const API_menuURL='http://localhost:3500/menu';
   const API_cartURL='http://localhost:3500/cart';
+  const API_ordersURL='http://localhost:3500/orders';
   const [users, setUsers] = useState([]);
   const [menuItems, setMenuItems] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [cart, setCart] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -51,8 +53,23 @@ function App() {
       }
     }
 
+    const fetchOrders=async ()=>{
+      try{
+        const response= await fetch(API_ordersURL);
+        if(!response.ok){
+          throw new Error('Failed to fetch orders');
+        }
+        const ordersData=await response.json();
+        setOrders(ordersData)
+        setFetchError(null);
+      }catch(err){
+        console.error(err.message);
+      }
+    }
+
     fetchUsers();
     fetchMenu();
+    fetchOrders();
   },[])
 
   const fetchCart=async (userId)=>{
@@ -131,6 +148,9 @@ function App() {
           setFetchError={setFetchError}
           loggedInUser={loggedInUser}
           API_cartURL={API_cartURL}
+          API_ordersURL={API_ordersURL}
+          orders={orders}
+          setOrders={setOrders}
         />}/>
       </Routes>
     </main>
