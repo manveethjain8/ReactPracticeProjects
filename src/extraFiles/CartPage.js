@@ -143,7 +143,9 @@ const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, se
             filteredItems.map((item) => (
               <div className="cartItemCard" key={item.id}>
                 <div className="cartItemImageBox">
-                  <img className="cartItemImage" src={item.image} alt="Item" />
+                  <img className="cartItemImage"                 
+                  src={item.image ? `${process.env.PUBLIC_URL}${item.image}` : "/fallback-image.png"} 
+                  alt={item.name || "Item"}/>
                 </div>
                 <div className="cartItemInfoBox">
                   <h3 className="cartItemName">{item.name}</h3>

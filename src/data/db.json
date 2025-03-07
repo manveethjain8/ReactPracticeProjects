@@ -21,111 +21,109 @@
     {
       "id": "1",
       "name": "Burger",
-      "image": "/public_images/burger.webp",
+      "image": "/images/burger.webp",
       "description": "A juicy beef patty grilled to perfection, topped with fresh lettuce, tomatoes, onions, pickles, and a special house sauce, all encased in a toasted sesame seed bun.",
       "price": "5"
     },
     {
       "id": "2",
       "name": "Pizza",
-      "image": "/public_images/pizza.webp",
+      "image": "/images/pizza.webp",
       "description": "A delicious hand-tossed pizza with a crispy golden crust, topped with rich tomato sauce, melted mozzarella cheese, and a variety of fresh toppings of your choice.",
       "price": "10"
     },
     {
       "id": "3",
       "name": "Fries",
-      "image": "/public_images/frenchFries.webp",
+      "image": "/images/frenchFries.webp",
       "description": "Crispy golden fries, lightly salted and served with your choice of ketchup, mayonnaise, or a tangy dipping sauce. Perfect as a side or snack.",
       "price": "3"
     },
     {
       "id": "4",
       "name": "Pasta",
-      "image": "/public_images/pasta.webp",
+      "image": "/images/pasta.webp",
       "description": "A rich and creamy pasta dish made with freshly cooked al dente pasta, tossed in a savory garlic butter sauce, and topped with Parmesan cheese and fresh herbs.",
       "price": "8"
     },
     {
       "id": "5",
       "name": "Chicken Wings",
-      "image": "/public_images/chickenWings.webp",
+      "image": "/images/chickenWings.webp",
       "description": "Crispy, deep-fried chicken wings tossed in a flavorful blend of spices, served with a side of ranch or blue cheese dressing.",
       "price": "7"
     },
     {
       "id": "6",
       "name": "Salad",
-      "image": "/public_images/salad.webp",
+      "image": "/images/salad.webp",
       "description": "A fresh and healthy mix of crisp lettuce, cherry tomatoes, cucumbers, red onions, and croutons, tossed in a light vinaigrette dressing.",
       "price": "4"
     },
     {
       "id": "7",
       "name": "Sandwich",
-      "image": "/public_images/sandwich.webp",
+      "image": "/images/sandwich.webp",
       "description": "A freshly made sandwich with layers of deli meats, fresh veggies, and creamy sauces, served in a soft toasted bun.",
       "price": "6"
     },
     {
       "id": "8",
       "name": "Tacos",
-      "image": "/public_images/tacos.webp",
+      "image": "/images/tacos.webp",
       "description": "Soft or crunchy tortillas filled with seasoned meat, fresh salsa, cheese, and a hint of lime for the perfect bite.",
       "price": "5"
     },
     {
       "id": "9",
       "name": "Sushi",
-      "image": "/public_images/sushi.webp",
+      "image": "/images/sushi.webp",
       "description": "Delicate sushi rolls filled with fresh fish, avocado, and rice, served with soy sauce and wasabi.",
       "price": "12"
     },
     {
       "id": "10",
       "name": "Steak",
-      "image": "/public_images/steak.webp",
+      "image": "/images/steak.webp",
       "description": "A perfectly grilled steak cooked to your preference, served with a side of mashed potatoes and steamed vegetables.",
       "price": "18"
     },
     {
       "id": "11",
       "name": "Smoothie",
-      "image": "/public_images/smoothie.webp",
+      "image": "/images/smoothie.webp",
       "description": "A refreshing blend of fresh fruits, yogurt, and honey, served chilled for a healthy and delicious treat.",
       "price": "4"
     },
     {
       "id": "12",
       "name": "Ice Cream",
-      "image": "/public_images/ice_cream.webp",
+      "image": "/images/ice_cream.webp",
       "description": "Creamy and rich ice cream in a variety of flavors, topped with chocolate syrup, sprinkles, and nuts.",
       "price": "3"
     },
     {
       "id": "13",
       "name": "Pancakes",
-      "image": "/public_images/pancake.webp",
+      "image": "/images/pancake.webp",
       "description": "Fluffy golden pancakes stacked high, drizzled with maple syrup, and topped with fresh berries and a pat of butter.",
       "price": "7"
     },
     {
       "id": "14",
       "name": "Muffin",
-      "image": "/public_images/muffin.webp",
+      "image": "/images/muffin.webp",
       "description": "A soft and freshly baked muffin, available in blueberry, chocolate chip, or banana nut flavors.",
       "price": "3"
     },
     {
       "id": "15",
       "name": "Coffee",
-      "image": "/public_images/coffee.webp",
+      "image": "/images/coffee.webp",
       "description": "A freshly brewed cup of aromatic coffee, served hot with your choice of milk, cream, or sugar.",
       "price": "2"
     }
   ],
-  "cart": [
-  ],
-  "orders": [
-  ]
+  "cart": [],
+  "orders": []
 }
