@@ -1,0 +1,268 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.ordersPageContainer {
+    width: 100dvw;
+    height: 100dvh;
+}
+
+
+.ordersPageBackground{
+    height: 100%;
+    width: 100%;
+    z-index: 98;
+    position: fixed;
+    top: 0;
+    object-fit: cover;
+}
+
+.underlay{
+    position: fixed;
+    height: 100dvh;
+    width: 100dvw;
+    background-color: rgba(0, 0, 0, 0.444);
+    z-index: 99;
+}
+
+.header {
+    position: fixed;
+    height: 60px;
+    width: 100dvw;
+    min-width:400px;
+    border-bottom: 2px white solid;
+    z-index: 100;
+    color: white;
+    font-size: 100px;
+    position: fixed;
+    vertical-align: middle;
+    text-align: center;
+    z-index: 100;
+}
+
+.cafeNameText{
+    position: absolute;
+    top:10px;
+    left: 10px;
+    font-size: 30px;
+    color: white;
+    opacity: 100%;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.cafeNameText:hover{
+    color:  rgb(224, 113, 27);
+}
+
+.cafeNameText:active{
+    color: green;
+}
+
+.cartText{
+    position: absolute;
+    top: 18px;
+    left: 200px;
+    font-size: 20px;
+    color: white;
+    opacity: 100%;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.cartText:hover{
+    color:  rgb(224, 113, 27);
+}
+
+.cartText:active{
+    color: green;
+}
+
+.ordersPageDisplay{
+    position: absolute;
+    top: 80px;
+    width: 100dvw;
+    height: calc(100dvh - 100px);
+    z-index: 100;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+.orderItem{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 300px;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.688);
+}
+
+.orderIdBox{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    border: none;
+    justify-content: center;
+    border-bottom: 1px white solid;
+}
+
+.orderIdNumber{
+    color: white;
+    font-size: 20px;
+}
+
+.orderItemsBox {
+    display: grid;                /* Switch to grid for better alignment */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px;                    /* Adds space between items */
+    overflow-y: auto;             
+    padding: 10px;
+}
+
+.orderedItem {
+    display: flex;               /* Aligns image and description horizontally */
+    align-items: center;         /* Vertically aligns content */
+    gap: 15px;                   /* Space between image and description */
+    width: 100%;                 /* Ensures full-width for better layout */
+    min-width: 300px;
+    max-width: 500px;            /* Prevents items from stretching too wide */
+    background-color: rgba(0, 0, 0, 0.688);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    height: 250px;
+}
+
+
+.orderedItemImageBox{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.orderedItemImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.orderedItemDescription {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+}
+
+.orderedItemNameBox{
+    width: 100%;
+    height: 20px;
+}
+
+.orderedItemName{
+    color: white;
+    font-size: 22px;
+}
+
+.orderedItemQuantityBox{
+    margin-top: 20px;
+    width: 100%;
+    height: 20px;
+}
+
+.orderedItemQuantity{
+    color: white;
+    font-size: 20px;
+}
+
+.orderedItemPriceBox{
+    margin-top: 20px;
+    width: 100%;
+    height: 20px;
+}
+
+.orderedItemPrice{
+    color: white;
+    font-size: 20px;
+}
+
+.orderedItemTotalBox{
+    width: 220px;
+    height: 40px;
+    border-top: 1px solid whitesmoke;
+    display: flex;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-left: 00px;
+    
+}
+
+.orderedItemTotalText, .orderedItemTotalAmount{
+    margin-right: 15px;
+    color: white;
+    font-size: 20px;
+}
+
+.orderTotalBox{
+    position: relative;
+    top:30px;
+    width: 100%;
+    height: 100px;
+    border-top: 1px solid whitesmoke;
+    display: flex;
+    padding-left: 50px;
+    padding-top: 15px;
+}
+
+.orderTotalText{
+    color: white;
+    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.orderTotalAmount{
+    color: white;
+    font-size: 25px;
+}
+
+.cancelOrderButton{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 100px;
+    height: 40px;
+    background-color:  red;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition:  0.2s ease;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.cancelOrderButton:focus{
+    background-color:red;
+}
+
+.cancelOrderButton:hover{
+    background-color: darkred;
+}
+
+.cancelOrderButton:active{
+    background-color: black;
+    transform: translateY(2px);
+    color: red;
+}
+
