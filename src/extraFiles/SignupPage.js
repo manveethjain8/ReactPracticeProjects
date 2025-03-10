@@ -5,9 +5,9 @@ import signupPageBackground from '../images/signupPageBackground.webp'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import apiRequest from '../apiRequest'
+import api from '../api/dataAxios';
 
-const SignupPage = ({email, setEmail, password, setPassword,users,setUsers,setFetchError, API_URL}) => {
+const SignupPage = ({email, setEmail, password, setPassword,users,setUsers,}) => {
 
   const [fName, setFName] = useState('');
   const [lName, setLName] = useState('');
@@ -25,15 +25,15 @@ const SignupPage = ({email, setEmail, password, setPassword,users,setUsers,setFe
       }else{
           let newId=users.length>0?Number(users[users.length-1].id)+1:1;
           const newUser={id:newId,fName, lName, pNumber, email, password};
-          const newUserList=[...users, newUser];
-          setUsers(newUserList);
-          const postOptions={
-            method:'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(newUser)
+          try{
+            const response = await api.post('/users', newUser);
+            const newUserList = [...users,response.data];
+            setUsers(newUserList);
+          }catch(err){
+            console.error(err.message);
+            alert('Failed to register');
+            return;
           }
-          const result = await apiRequest(API_URL, postOptions);
-          if(result) setFetchError(result);
           setEmail('');
           setPassword('');
           setFName('');

@@ -7,14 +7,6 @@
       "pNumber": "1234567891",
       "email": "man@gmail.com",
       "password": "123"
-    },
-    {
-      "id": "2",
-      "fName": "M",
-      "lName": "J",
-      "pNumber": "1234567890",
-      "email": "m@g.com",
-      "password": "1"
     }
   ],
   "menu": [

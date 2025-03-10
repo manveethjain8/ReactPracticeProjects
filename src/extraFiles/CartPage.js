@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import '../extraCSS/CartPage.css';
 import cartPageBackground from '../images/cartPageBackground.webp'
-import apiRequest from '../apiRequest';
+import { Link } from 'react-router-dom';
+import api from '../api/dataAxios';
 
-const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, setFetchError, API_cartURL,loggedInUser, API_ordersURL, orders, setOrders }) => {
+const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems,loggedInUser, orders, setOrders }) => {
   const [searchItem, setSearchItem] = useState('');
   const [filteredItems, setFilteredItems] = useState(cart);
 
@@ -30,14 +31,11 @@ const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, se
     setCart(updatedCart);
     setTotalNumberOfItems(updatedCart.reduce((total, item) => total + item.quantity, 0));
 
-    const updateOption = {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ quantity: itemInCart.quantity + 1 }),
-    };
-
-    const result = await apiRequest(`${API_cartURL}/${itemId}`, updateOption);
-    if (result) setFetchError(result);
+    try{
+      await api.patch(`/cart/${itemId}`);
+    }catch(err){
+      console.error(err.message);
+    }
   };
 
   const decreaseQuantity = async (itemId) => {
@@ -54,14 +52,11 @@ const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, se
       setCart(updatedCart);
       setTotalNumberOfItems(updatedCart.reduce((total, item) => total + item.quantity, 0));
 
-      const updateOption = {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ quantity: itemInCart.quantity - 1 }),
-      };
-
-      const result = await apiRequest(`${API_cartURL}/${itemId}`, updateOption);
-      if (result) setFetchError(result);
+      try{
+        await api.patch(`/cart/${itemId}`);
+      }catch(err){
+        console.error(err.message);
+      }
     }
   };
 
@@ -69,9 +64,12 @@ const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, se
     const updatedCart = cart.filter(item => !(item.id === itemId && item.userId === loggedInUser.id));
     setCart(updatedCart);
     setTotalNumberOfItems(updatedCart.reduce((total, item) => total + item.quantity, 0));
-    const deleteOption = { method: 'DELETE' };
-    const result = await apiRequest(`${API_cartURL}/${itemId}`, deleteOption);
-    if (result) setFetchError(result);
+    try{
+      await api.delete(`/cart/${itemId}`);
+
+    }catch(err){
+      console.error(err.message);
+    }
   };
 
   let userCartItems = cart.filter(item => item.userId === loggedInUser.id);
@@ -86,24 +84,21 @@ const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, se
       
       // Create order data
       const orderData = { orderId,user_name:loggedInUser.lName, user_pNumber:loggedInUser.pNumber, user_email:loggedInUser.email, userId: loggedInUser.id, items: userCartItems, cost:TAT };
-      const orderOption = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(orderData),
-      };
-  
-      // Save order
-      setOrders([...orders, orderData]);
-      const result = await apiRequest(API_ordersURL, orderOption);
-      if (result) {
-        setFetchError(result);
-        return; // Stop execution if there's an error
+      try{
+        const response = await api.post('/orders', orderData);
+        setOrders([...orders, response.data]);
+      }catch(error){
+        console.error(error);
+        alert('Error creating order');
+        return;
       }
   
-      
-      // ✅ Delete each item in the cart for the user
       for (const item of userCartItems) {
-        await apiRequest(`${API_cartURL}/${item.id}`, { method: "DELETE" });
+        try{
+          await api.delete(`/cart/${item.id}`);
+        }catch{
+          console.error(`Failed to remove item from cart: ${item.itemId}`); 
+        }
       }
 
       // Clear cart in state
@@ -111,11 +106,10 @@ const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, se
       setTotalNumberOfItems(0);
   
       alert('Order placed successfully');
-      setFetchError(null);
   
     } catch (error) {
       console.error("Error placing order:", error);
-      setFetchError("Failed to place order.");
+      alert("Failed to place order.");
     }
   };
   
@@ -125,7 +119,8 @@ const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems, se
       <img className='itemsPageBackground' src={cartPageBackground} alt="Background" />
       <div className='underlay'></div>
         <div className='header'>
-          <p className='cafeNameText'>Cafe Name</p>
+          <Link to='/'><p className='cafeNameText'>Cafe Name</p></Link>
+          <Link to='/orders'><p className='ordersText'>Orders</p></Link>
           <input
             className='searchBox'
             type='text'

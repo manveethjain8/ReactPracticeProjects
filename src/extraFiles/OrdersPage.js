@@ -1,9 +1,9 @@
 import '../extraCSS/OrdersPage.css'
 import ordersPageBackground from '../images/ordersPageBackground.webp'
 import { Link } from 'react-router-dom';
-import apiRequest from '../apiRequest';
+import api from '../api/dataAxios';
 
-const OrdersPage = ({ orders, setOrders, API_ordersURL, setFetchError }) => {
+const OrdersPage = ({ orders, setOrders}) => {
 
     const calculateTotal = (orderItem) => {
         return orderItem.items.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -12,19 +12,15 @@ const OrdersPage = ({ orders, setOrders, API_ordersURL, setFetchError }) => {
     const deleteOrder = async (orderId) => {
         const orderToDelete = orders.find(order => order.orderId === orderId); // Locate using `orderId`
         if (!orderToDelete) return;
-    
-        const deleteOrderOptions = {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' }
-        };
-    
-        const result = await apiRequest(`${API_ordersURL}/${orderToDelete.id}`, deleteOrderOptions);
-    
-        if (!result) {
-            setOrders(prevOrders => prevOrders.filter(order => order.orderId !== orderId));
-        } else {
-            setFetchError(result);
+
+        try{
+            await api.delete(`/orders/${orderToDelete.id}`);
+        }catch(err){
+            console.error(err.message);
+            alert("Failed to delete order");
+            return;
         }
+        setOrders(prevOrders => prevOrders.filter(order => order.orderId!== orderId));
     };
     
     
@@ -101,7 +97,7 @@ const OrdersPage = ({ orders, setOrders, API_ordersURL, setFetchError }) => {
                         </div>
                     ))
                 ) : (
-                    <p>No orders found.</p>
+                    <p className='defaultText'>No orders found.</p>
                 )}
             </div>
         </div>

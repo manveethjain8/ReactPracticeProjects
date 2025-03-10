@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../extraCSS/ItemsPage.css';
 import itemsPageImage from '../images/itemsPageImage.webp';
-import apiRequest from '../apiRequest'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/dataAxios';
 
 
-const ItemsPage = ({ menuItems, cart, setCart, setFetchError,API_cartURL,totalNumberOfItems,setTotalNumberOfItems,loggedInUser }) => {
+const ItemsPage = ({ menuItems, cart, setCart, totalNumberOfItems,setTotalNumberOfItems,loggedInUser }) => {
   const [searchItem, setSearchItem] = useState('');
   const [filteredItems, setFilteredItems] = useState(menuItems);
   const [itemId, setItemId] = useState(''); // Will hold the item ID when adding to cart
@@ -74,16 +74,15 @@ const ItemsPage = ({ menuItems, cart, setCart, setFetchError,API_cartURL,totalNu
   
       if (itemInCart) {
           // If item already exists for this user, increase quantity
-          itemInCart.quantity += 1;
-  
-          const updateOption = {
-              method: 'PATCH',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ quantity: itemInCart.quantity }),
-          };
-  
-          const result = await apiRequest(`${API_cartURL}/${itemInCart.id}`, updateOption);
-          if (result) setFetchError(result);
+        itemInCart.quantity += 1;
+
+        try{
+          await api.patch(`/cart/${itemInCart.id}`,{quantity:itemInCart.quantity});
+        }catch(err){
+          console.error('Error updating cart item:', err);
+          alert('Error updating cart item');
+          return;
+        }
       } else {
           // If item is new, add userId and save it
           let newItem = {
@@ -95,16 +94,15 @@ const ItemsPage = ({ menuItems, cart, setCart, setFetchError,API_cartURL,totalNu
               quantity: 1,
           };
   
-          updatedCart.push(newItem);
   
-          const postOptions = {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(newItem),
-          };
-  
-          const result = await apiRequest(API_cartURL, postOptions);
-          if (result) setFetchError(result);
+          try{
+            const response=await api.post('/cart',newItem);
+            updatedCart = [...updatedCart, response.data];
+          }catch(err){
+            console.error('Error adding new cart item:', err);
+            alert('Error adding new cart item');
+            return;
+          }
       }
   
       setCart(updatedCart); // Update cart state
@@ -122,7 +120,8 @@ const ItemsPage = ({ menuItems, cart, setCart, setFetchError,API_cartURL,totalNu
       <img className='itemsPageBackground' src={itemsPageImage} alt="Background" />
       <div className='underlay'>
         <div className='header'>
-          <p className='cafeNameText'>Cafe Name</p>
+          <Link to='/'><p className='cafeNameText'>Cafe Name</p></Link>
+          <Link to='/orders'><p className='ordersText'>Orders</p></Link>
           <input
             className='searchBox'
             type='text'

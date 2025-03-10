@@ -266,3 +266,8 @@ html, body {
     color: red;
 }
 
+.defaultText{
+    color: white;
+    font-size: 20px;
+}
+

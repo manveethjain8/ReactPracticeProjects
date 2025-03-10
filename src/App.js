@@ -5,13 +5,10 @@ import LoginPage from './extraFiles/LoginPage';
 import ItemsPage from './extraFiles/ItemsPage';
 import CartPage from './extraFiles/CartPage';
 import OrdersPage from './extraFiles/OrdersPage';
+import api from './api/dataAxios';
 
 
 function App() {
-  const API_URL='http://localhost:3500/users';
-  const API_menuURL='http://localhost:3500/menu';
-  const API_cartURL='http://localhost:3500/cart';
-  const API_ordersURL='http://localhost:3500/orders';
   const [users, setUsers] = useState([]);
   const [menuItems, setMenuItems] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -29,12 +26,8 @@ function App() {
   useEffect(() =>{
     const fetchUsers = async()=>{
       try{
-        const response = await fetch(API_URL);
-        if(!response.ok){
-          throw new Error('Failed to fetch users');
-        }
-        const usersData=await response.json();
-        setUsers(usersData);
+        const response = await api.get('/users');
+        setUsers(response.data);
         setFetchError(null);
       }catch(err){
         console.error(err.message);
@@ -43,12 +36,8 @@ function App() {
 
     const fetchMenu=async ()=>{
       try{
-        const response = await fetch(API_menuURL);
-        if(!response.ok){
-          throw new Error('Failed to fetch menu');
-        }
-        const menuData=await response.json();
-        setMenuItems(menuData);
+        const response = await api.get('/menu');
+        setMenuItems(response.data);
         setFetchError(null);
       }catch(err){
         console.error(err.message);
@@ -62,14 +51,10 @@ function App() {
 
   const fetchCart=async (userId)=>{
     try{
-      const response =await fetch(`${API_cartURL}?userId=${userId}`);
-      if(!response.ok){
-        throw new Error('Failed to fetch cart');
-      }
-      const cartData=await response.json();
-      const totalNumber = cartData.reduce((total, item) => total + item.quantity, 0);
+      const response = await api.get(`/cart?userId=${userId}`);
+      const totalNumber = response.data.reduce((total, item) => total + item.quantity, 0);
       setTotalNumberOfItems(totalNumber);
-      setCart(cartData);
+      setCart(response.data);
     }catch(err){
       console.error(err.message);
     }
@@ -77,26 +62,25 @@ function App() {
 
   const fetchOrders = async (userId) => {
     try {
-        const response = await fetch(`${API_ordersURL}?userId=${userId}`);
-        if (!response.ok) {
-            throw new Error('Failed to fetch orders');
-        }
-        const ordersData = await response.json();
-        setOrders(ordersData);
+        const response = await api.get(`/orders?userId=${userId}`);
+        setOrders(response.data);
     } catch (err) {
         console.error(err.message);
-    } finally {
-        setIsLoading(false);  // ✅ Mark loading as complete
     }
   };
 
   useEffect(()=>{
     if(loggedInUser){
       fetchCart(loggedInUser.id);
-      fetchOrders(loggedInUser.id);
       sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
     }
-  },[loggedInUser,API_cartURL, API_menuURL]);
+  },[loggedInUser]);
+
+  useEffect(()=>{
+    if(loggedInUser){
+      fetchOrders(loggedInUser.id)
+    }
+  },[,orders,setOrders])
   return (
     <main>
       <Routes>
@@ -124,9 +108,6 @@ function App() {
               setEmail={setEmail}
               password={password}
               setPassword={setPassword}
-              fetchError={fetchError}
-              setFetchError={setFetchError}
-              API_URL={API_URL}
             />
           } 
         />
@@ -135,9 +116,6 @@ function App() {
           setMenuItems={setMenuItems}
           cart={cart}
           setCart={setCart}
-          fetchError={fetchError}
-          setFetchError={setFetchError}
-          API_cartURL={API_cartURL}
           totalNumberOfItems={totalNumberOfItems}
           setTotalNumberOfItems={setTotalNumberOfItems}
           loggedInUser={loggedInUser}
@@ -148,11 +126,7 @@ function App() {
           setCart={setCart}
           totalNumberOfItems={totalNumberOfItems}
           setTotalNumberOfItems={setTotalNumberOfItems} 
-          fetchError={fetchError}
-          setFetchError={setFetchError}
           loggedInUser={loggedInUser}
-          API_cartURL={API_cartURL}
-          API_ordersURL={API_ordersURL}
           orders={orders}
           setOrders={setOrders}
         />}/>
@@ -161,8 +135,6 @@ function App() {
           orders={orders}
           setOrders={setOrders}
           loggedInUser={loggedInUser}
-          API_ordersURL={API_ordersURL}
-          setFetchError={setFetchError}
           isLoading={isLoading}
         />} />
       </Routes>
