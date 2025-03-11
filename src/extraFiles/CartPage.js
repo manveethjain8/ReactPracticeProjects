@@ -3,8 +3,12 @@ import '../extraCSS/CartPage.css';
 import cartPageBackground from '../images/cartPageBackground.webp'
 import { Link } from 'react-router-dom';
 import api from '../api/dataAxios';
+import { useContext} from 'react';
+import DataContext from '../context/DataContext';
 
-const CartPage = ({ cart, setCart, totalNumberOfItems, setTotalNumberOfItems,loggedInUser, orders, setOrders }) => {
+const CartPage = () => {
+  const { cart, setCart, totalNumberOfItems, setTotalNumberOfItems,loggedInUser, orders, setOrders }=useContext(DataContext);
+
   const [searchItem, setSearchItem] = useState('');
   const [filteredItems, setFilteredItems] = useState(cart);
 

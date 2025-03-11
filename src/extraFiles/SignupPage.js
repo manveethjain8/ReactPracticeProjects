@@ -6,8 +6,11 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import api from '../api/dataAxios';
+import { useContext} from 'react';
+import DataContext from '../context/DataContext';
 
-const SignupPage = ({email, setEmail, password, setPassword,users,setUsers,}) => {
+const SignupPage = () => {
+  const {email, setEmail, password, setPassword,users,setUsers} = useContext(DataContext);
 
   const [fName, setFName] = useState('');
   const [lName, setLName] = useState('');

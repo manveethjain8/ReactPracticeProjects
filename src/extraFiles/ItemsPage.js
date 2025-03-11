@@ -4,9 +4,13 @@ import itemsPageImage from '../images/itemsPageImage.webp';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/dataAxios';
+import { useContext} from 'react';
+import DataContext from '../context/DataContext';
 
 
-const ItemsPage = ({ menuItems, cart, setCart, totalNumberOfItems,setTotalNumberOfItems,loggedInUser }) => {
+const ItemsPage = () => {
+  const { menuItems, cart, setCart, totalNumberOfItems,setTotalNumberOfItems,loggedInUser }=useContext(DataContext);
+  
   const [searchItem, setSearchItem] = useState('');
   const [filteredItems, setFilteredItems] = useState(menuItems);
   const [itemId, setItemId] = useState(''); // Will hold the item ID when adding to cart
@@ -121,7 +125,8 @@ const ItemsPage = ({ menuItems, cart, setCart, totalNumberOfItems,setTotalNumber
       <div className='underlay'>
         <div className='header'>
           <Link to='/'><p className='cafeNameText'>Cafe Name</p></Link>
-          <Link to='/orders'><p className='ordersText'>Orders</p></Link>
+          <Link to='/orders'><p className='ordersTextI'>Orders</p></Link>
+          <Link to='/cart'><p className='cartText'>Cart</p></Link>
           <input
             className='searchBox'
             type='text'

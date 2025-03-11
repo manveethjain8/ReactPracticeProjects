@@ -5,8 +5,13 @@ import loginPageBackground from '../images/loginPageBackground.webp'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useContext} from 'react';
+import DataContext from '../context/DataContext';
 
-const LoginPage = ({users,email, setEmail, password, setPassword, setLoggedInUser}) => {
+const LoginPage = () => {
+
+  const {users,email, setEmail, password, setPassword, setLoggedInUser}=useContext(DataContext);
+
   const navigate = useNavigate();
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);

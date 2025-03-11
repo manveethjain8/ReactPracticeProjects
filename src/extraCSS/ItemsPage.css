@@ -50,7 +50,7 @@ html, body {
     opacity: 100%;
 }
 
-.ordersText{
+.cartText{
     position: absolute;
     top: 18px;
     left: 200px;
@@ -61,11 +61,31 @@ html, body {
     transition: color 0.2s ease;
 }
 
-.ordersText:hover{
+.cartText:hover{
     color:  rgb(224, 113, 27);
 }
 
-.ordersText:active{
+.cartText:active{
+    color: green;
+}
+
+.ordersTextI{
+    position: absolute;
+    
+    top: 18px;
+    left: 280px;
+    font-size: 20px;
+    color: white;
+    opacity: 100%;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.ordersTextI:hover{
+    color:  rgb(224, 113, 27);
+}
+
+.ordersTextI:active{
     color: green;
 }
 

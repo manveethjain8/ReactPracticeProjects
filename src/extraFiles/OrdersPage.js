@@ -2,8 +2,12 @@ import '../extraCSS/OrdersPage.css'
 import ordersPageBackground from '../images/ordersPageBackground.webp'
 import { Link } from 'react-router-dom';
 import api from '../api/dataAxios';
+import { useContext} from 'react';
+import DataContext from '../context/DataContext';
 
-const OrdersPage = ({ orders, setOrders}) => {
+const OrdersPage = () => {
+
+    const { orders, setOrders}=useContext(DataContext);
 
     const calculateTotal = (orderItem) => {
         return orderItem.items.reduce((total, item) => total + item.price * item.quantity, 0);
